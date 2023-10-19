@@ -1,0 +1,70 @@
+digraph "CFG for'main' function" {
+	BB0 [shape=record, label="{BB0:\l\l  %1 = alloca i32, align 4\l
+  %2 = alloca i32, align 4\l
+  %3 = alloca i32, align 4\l
+  %4 = alloca i32, align 4\l
+  %5 = alloca i32, align 4\l
+  store i32 0, i32* %1, align 4\l
+  store i32 5, i32* %2, align 4\l
+  store i32 10, i32* %3, align 4\l
+  store i32 0, i32* %4, align 4\l
+  %6 = load i32, i32* %2, align 4\l
+  %7 = load i32, i32* %3, align 4\l
+  %8 = icmp slt i32 %6, %7\l
+  br i1 %8, label %9, label %21\l
+}"];
+	BB0-> BB1;
+	BB0-> BB2;
+	BB1 [shape=record, label="{BB1:\l\l  store i32 0, i32* %5, align 4\l
+  br label %10\l
+}"];
+	BB1-> BB3;
+	BB3 [shape=record, label="{BB3:\l\l  %11 = load i32, i32* %5, align 4\l
+  %12 = icmp slt i32 %11, 5\l
+  br i1 %12, label %13, label %20\l
+}"];
+	BB3-> BB4;
+	BB3-> BB5;
+	BB4 [shape=record, label="{BB4:\l\l  %14 = load i32, i32* %2, align 4\l
+  %15 = load i32, i32* %4, align 4\l
+  %16 = add nsw i32 %15, %14\l
+  store i32 %16, i32* %4, align 4\l
+  br label %17\l
+}"];
+	BB4-> BB6;
+	BB6 [shape=record, label="{BB6:\l\l  %18 = load i32, i32* %5, align 4\l
+  %19 = add nsw i32 %18, 1\l
+  store i32 %19, i32* %5, align 4\l
+  br label %10\l
+}"];
+	BB6-> BB3;
+	BB5 [shape=record, label="{BB5:\l\l  br label %32\l
+}"];
+	BB5-> BB7;
+	BB2 [shape=record, label="{BB2:\l\l  br label %22\l
+}"];
+	BB2-> BB8;
+	BB8 [shape=record, label="{BB8:\l\l  %23 = load i32, i32* %3, align 4\l
+  %24 = icmp sgt i32 %23, 0\l
+  br i1 %24, label %25, label %31\l
+}"];
+	BB8-> BB9;
+	BB8-> BB10;
+	BB9 [shape=record, label="{BB9:\l\l  %26 = load i32, i32* %3, align 4\l
+  %27 = load i32, i32* %4, align 4\l
+  %28 = sub nsw i32 %27, %26\l
+  store i32 %28, i32* %4, align 4\l
+  %29 = load i32, i32* %3, align 4\l
+  %30 = add nsw i32 %29, -1\l
+  store i32 %30, i32* %3, align 4\l
+  br label %22\l
+}"];
+	BB9-> BB8;
+	BB10 [shape=record, label="{BB10:\l\l  br label %32\l
+}"];
+	BB10-> BB7;
+	BB7 [shape=record, label="{BB7:\l\l  %33 = load i32, i32* %4, align 4\l
+  %34 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([12 x i8], [12 x i8]* @.str, i64 0, i64 0), i32 %33)\l
+  ret i32 0\l
+}"];
+}

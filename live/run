@@ -1,0 +1,5 @@
+clang++ -shared -o live.so live.cpp  `llvm-config --cxxflags` -fPIC -Wall
+clang++ -shared -o reach.so reach.cpp  `llvm-config --cxxflags` -fPIC -Wall
+clang -O0 -emit-llvm -c sum.c
+opt -mem2reg sum.bc -o sum-simple.bc
+opt -stats -load  live.so sum-simple.bc -o sum-out.bc
